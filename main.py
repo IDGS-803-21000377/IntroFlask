@@ -4,13 +4,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "hola mundo!!"
-
-
+    return "Hola mundo!!"
 
 @app.route("/hola")
 def hola():
-    return"hola!!"
+    return "Hola!!"
 
 @app.route("/user/<string:user>")
 def user(user):
@@ -18,19 +16,15 @@ def user(user):
 
 @app.route("/numero/<int:n>")
 def numero(n):
-    return "Numer:{}".format(n)
+    return "Número: {}".format(n)
 
+@app.route("/user/<string:user>/<int:id>")
+def username(user, id):
+    return f"Nombre: {user} id: {id}!!!"
 
-@app.route("/user/<string:user>/<int:n")
-def username(user,id):
-    return f"Nombre:{user} id:{id}!!!"
-
-@app.route("/suma/<float:n1>/<float:n2")
-def suma(n1,n2):
-    return "la suma es {}!!!".format(n1,n2)
-
-
+@app.route("/suma/<float:n1>/<float:n2>")
+def suma(n1, n2):
+    return "La suma es {}!!!".format(n1 + n2)
 
 if __name__ == "__main__":
     app.run(debug=True)
-
