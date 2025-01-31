@@ -8,19 +8,15 @@ def index():
     grupo = "IDGS803"
 
     return render_template("index.html",grupo=grupo,lista = lista)
+
 @app.route("/OperasBas", methods=["GET", "POST"])
 def operas():
     res = 0
     if request.method == "POST":
         num1 = request.form.get("n1")
         num2 = request.form.get("n2")
-        try:
-            res = "La suma de {} y {} es {}".format(num1, num2, int(num1) + int(num2))
-        except ValueError:
-            res = "Por favor, ingresa números válidos."
+        res = "La suma de {} y {} es {}".format(num1, num2, int(num1) + int(num2))
     return render_template("OperasBase.html", res=res)
-
-
 
 @app.route("/resultado",methods=["GET","POST"])
 
