@@ -32,6 +32,20 @@ def resultado():
 
 
 
+
+@app.route("/boletos", methods=["GET", "POST"])
+def boletos():
+    result = 0
+
+  
+
+        
+    return render_template("taquilla.html", result = result)
+     
+
+
+
+
 @app.route("/ejemplo1")
 def ejemplo1():
     return render_template("ejemplo1.html")
@@ -42,6 +56,9 @@ def funcion1():
 
 def ejemplo2():
     return render_template("ejemplo2.html")
+
+
+
 
 @app.route("/hola")
 def hola():
