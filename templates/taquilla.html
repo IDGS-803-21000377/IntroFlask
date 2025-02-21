@@ -11,30 +11,42 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center fw-bold">Cinepolis</h1>
-        
+
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card p-3">
                     <h4 class="card-title">Entradas</h4>
+                    
                     <form action="/boletos" method="post">
                         <div class="mb-2">
-                            <label>Nombre:</label>
-                            <input type="text" class="form-control">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" class="form-control" name="nombre" id="nombre" required>
                         </div>
+
                         <div class="mb-2">
-                            <label>Cantidad Compradores:</label>
-                            <input type="number" class="form-control">
+                            <label for="cantidad_compradores">Cantidad de Compradores:</label>
+                            <input type="number" class="form-control" name="cantidad_compradores" id="cantidad_compradores" min="1" required>
                         </div>
+
+                        <div class="mb-2">
+                            <label for="cantidad">Cantidad de Boletos:</label>
+                            <input type="number" class="form-control" name="cantidad" id="cantidad" min="1" max="7" required>
+                        </div>
+
                         <div class="mb-2">
                             <label>Tarjeta Cineco:</label>
                             <div>
-                                <input type="radio" name="cineco" id="si"> <label for="si">Sí</label>
-                                <input type="radio" name="cineco" id="no"> <label for="no">No</label>
+                                <input type="radio" name="cineco" value="Sí" id="si" required> 
+                                <label for="si">Sí</label>
+                                
+                                <input type="radio" name="cineco" value="No" id="no" required> 
+                                <label for="no">No</label>
                             </div>
                         </div>
-                        <div class="mb-2">
-                            <label>Cantidad de Boletos:</label>
-                            <input type="number" class="form-control">
+
+                        <div class="text-center mt-3">
+                            <input type="submit" value="Calcular" class="btn btn-primary">
+                            <a href="/" class="btn btn-danger">Salir</a>
                         </div>
                     </form>
                 </div>
@@ -43,23 +55,11 @@
             <div class="col-md-6">
                 <div class="card p-3">
                     <h4 class="card-title">Salidas</h4>
-                    {% if result %}
-                    <h3>{{ result }}</h3>
-                    {% endif %}
-                    
-                </div>
-            </div>
-        </div>
-
-        <div class="row mt-3 text-center">
-            <div class="col-md-6 offset-md-3">
-                <div class="card p-3">
-                    <h4 class="card-title">Acciones</h4>
-
-                    <input type="submit" value="Calcular" class="btn btn-primary">
-                    <input type="submit" value="Salir" class="btn btn-danger">
-
-
+                    <div class="mt-3">
+                        {% if result %}
+                            <h5 class="text-success">{{ result }}</h5>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

@@ -31,17 +31,47 @@ def resultado():
     return render_template("OperasBase.html")
 
 
-
-
 @app.route("/boletos", methods=["GET", "POST"])
 def boletos():
-    result = 0
+    precio_boleto = 12.00
+    descuento = 0
+    mensaje = ""
 
-  
+    if request.method == "POST":
+        name = request.form.get("nombre", "").strip()
+        cant_boletos = request.form.get("cantidad", "0").strip()
+        tiene_cineco = request.form.get("cineco") == "Sí"
 
-        
-    return render_template("taquilla.html", result = result)
-     
+        if not name:
+            mensaje = "Por favor, ingresa tu nombre."
+        elif not cant_boletos.isdigit():
+            mensaje = "Por favor, ingresa un número válido de boletos."
+        else:
+            cant_boletos = int(cant_boletos)
+
+            if cant_boletos > 7:
+                mensaje = "El límite de compra es de 7 boletos."
+            else:
+                total_sin_descuento = cant_boletos * precio_boleto
+
+                if 2 < cant_boletos < 5:
+                    descuento = 0.10  
+                elif cant_boletos >= 5:
+                    descuento = 0.15  
+
+                if tiene_cineco:
+                    descuento += 0.10  
+
+                total_pagar = total_sin_descuento * (1 - descuento)
+
+                mensaje = (
+                    f"Tu nombre es {name}. Compraste {cant_boletos} boletos. "
+                    f"Precio total: ${total_sin_descuento:.2f}. "
+                    f"Descuento aplicado: {descuento*100}%. "
+                    f"Total a pagar: ${total_pagar:.2f}."
+                )
+
+    return render_template("taquilla.html", result=mensaje)
 
 
 
