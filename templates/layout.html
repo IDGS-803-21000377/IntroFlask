@@ -9,7 +9,14 @@
       body{
         padding-top: 60px;
       }
+      .tr-head{
+            background-color: #dff0d8;
+        }
      </style>
+     
+<link rel="stylesheet" href="../static/bootstrap/bootstrap/css/bootstrap-responsive.css">
+
+
 
   </head>
 <body>
@@ -46,7 +53,17 @@
   </div>
 
 <div class="container">
+  {%with messages = get_flashed_messages()%}
+  {%if messages%}
+  {%for message in messages%}
+  <div class="alert alert-success ">
 
+      {{ message}}
+  </div>
+  {%endfor%}
+  {%endif%}
+
+  {%endwith%}
   {% block container %}
  
   {% endblock%}

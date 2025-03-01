@@ -1,53 +1,49 @@
-
-
 {% extends "layout.html" %}
 
 {% block container %}
 
-{%import "_macros.html" as macro%}
+{% import "_macros.html" as macros %}
 
-<form action="" method="post">
+<form action="" method="POST" novalidate>
+    {{ form.csrf_token }}
 
     <div class="row control-group">
-        <div class="form-groupform-group col-xs-12 floating-label-form-group controls">
-        {{macro.campoNuevo(form.matricula,class= "form-control")}}
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ macros.campoNuevo(form.matricula) }}
         </div>
-
     </div>
 
     <div class="row control-group">
-        <div class="form-groupform-group col-xs-12 floating-label-form-group controls">
-        {{macro.campoNuevo(form.nombre,class= "form-control")}}
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ macros.campoNuevo(form.nombre) }}
         </div>
-
-    </div>
-    <div class="row control-group">
-        <div class="form-groupform-group col-xs-12 floating-label-form-group controls">
-         {{macro.campoNuevo(form.apellidos,class= "form-control")}}
-
-         </div>
     </div>
 
     <div class="row control-group">
-        <div class="form-groupform-group col-xs-12 floating-label-form-group controls">
-         {{macro.campoNuevo(form.edad,class= "form-control")}}
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ macros.campoNuevo(form.apellidos) }}
         </div>
-
     </div>
+
     <div class="row control-group">
-        <div class="form-groupform-group col-xs-12 floating-label-form-group controls">
-         {{macro.campoNuevo(form.correo,class= "form-control")}}
-
-         </div>
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ macros.campoNuevo(form.edad) }}
+        </div>
     </div>
-    <input type="submit" class="btn btn-primary"  value ="guardar">
-    
+
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+            {{ macros.campoNuevo(form.correo) }}
+        </div>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="Guardar">
 </form>
 
-  <h2>Matricula : {{mat}}</h2>
-  <h2>Nombre : {{nom}}</h2>
-  <h2>Apellidos : {{ape}}</h2>
-  <h2>Correo : {{correo}}</h2>
+<h2>Matricula: {{ mat }}</h2>
+<h2>Nombre: {{ nom }}</h2>
+<h2>Apellidos: {{ ape }}</h2>
+<h2>Edad: {{ edad }}</h2>
+<h2>Correo: {{ correo }}</h2>
 
-
-{%endblock%}
+{% endblock %}

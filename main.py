@@ -1,7 +1,29 @@
 from flask import Flask, render_template,request
 import forms 
+from flask_wtf.csrf import CSRFProtect
+from flask import g
+
 
 app = Flask(__name__)  
+app.secret_key='La clave secreta'
+csrf = CSRFProtect(app)
+
+
+@app.before_request
+def before_request():
+    g.Nombre = 'Luis'
+    print('Antes de la peticion')
+
+
+@app.after_request
+def after_request(response):
+    print('Despues de la peticion')
+    return response
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 @app.route('/')
 def index():
@@ -17,6 +39,7 @@ def alumnos():
     edad=''
     correo=''
     ape = ''
+    
     alumno_clase= forms.UserForm(request.form)
     if(request.method) == 'POST':
      mat = alumno_clase.matricula.data
